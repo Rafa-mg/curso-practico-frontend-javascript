@@ -3,7 +3,7 @@ const desktopMenu = document.querySelector('.desktop-menu')
 const burguerMenu = document.querySelector('.menu')
 const mobileMenu = document.querySelector('.mobile-menu')
 const shoppingCart = document.querySelector('.navbar-shopping-cart')
-const asideCartMenu = document.querySelector('.product-detail')
+const shoppingCartMenu = document.querySelector('#shoppingCartContainer')
 const cardsContainer = document.querySelector('.cards-container')
 const mainContainer = document.querySelector('.main-container')
 
@@ -16,14 +16,14 @@ burguerMenu.addEventListener('click', toggleDeskopMobileMenuClass)
 shoppingCart.addEventListener('click', toggleShoppingCart)
 
 function toggleDeskopMobileMenuClass() {
-    const isOrderClosed = asideCartMenu.classList.contains('inactive')
+    const isOrderClosed = shoppingCartMenu.classList.contains('inactive')
     const isDesktopClosed = desktopMenu.classList.contains('inactive')
 
     desktopMenu.classList.toggle('inactive')
     mobileMenu.classList.toggle('inactive')
 
     if (!isOrderClosed) {
-        asideCartMenu.classList.add('inactive')
+        shoppingCartMenu.classList.add('inactive')
     }
 
     if (!isDesktopClosed) {
@@ -36,7 +36,7 @@ function toggleShoppingCart () {
     const isAsideClosed = mobileMenu.classList.contains('inactive')
     const isDesktopClosed = desktopMenu.classList.contains('inactive')
 
-    asideCartMenu.classList.toggle('inactive')
+    shoppingCartMenu.classList.toggle('inactive')
 
     if (!isAsideClosed) {
         mobileMenu.classList.add('inactive')
