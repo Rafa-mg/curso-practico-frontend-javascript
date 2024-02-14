@@ -6,6 +6,9 @@ const shoppingCart = document.querySelector('.navbar-shopping-cart')
 const shoppingCartMenu = document.querySelector('#shoppingCartContainer')
 const cardsContainer = document.querySelector('.cards-container')
 const mainContainer = document.querySelector('.main-container')
+const productDetail = document.querySelector('#productDetail')
+const productDetailCloseIcon = document.querySelector('.product-detail-close')
+
 
 
 /////////////////////////////////////////////////////////////////////
@@ -15,9 +18,13 @@ burguerMenu.addEventListener('click', toggleDeskopMobileMenuClass)
 
 shoppingCart.addEventListener('click', toggleShoppingCart)
 
+productDetailCloseIcon.addEventListener('click', closeProductDetail)
+
+
 function toggleDeskopMobileMenuClass() {
     const isOrderClosed = shoppingCartMenu.classList.contains('inactive')
     const isDesktopClosed = desktopMenu.classList.contains('inactive')
+    const isProductDetailClosed = productDetail.classList.contains('inactive')
 
     desktopMenu.classList.toggle('inactive')
     mobileMenu.classList.toggle('inactive')
@@ -30,11 +37,17 @@ function toggleDeskopMobileMenuClass() {
         desktopMenu.classList.add('inactive')
     }
 
+    if (!isProductDetailClosed) {
+        productDetail.classList.add('inactive')
+    }
+
 }
 
 function toggleShoppingCart () {
     const isAsideClosed = mobileMenu.classList.contains('inactive')
     const isDesktopClosed = desktopMenu.classList.contains('inactive')
+    const isProductDetailClosed = productDetail.classList.contains('inactive')
+    
 
     shoppingCartMenu.classList.toggle('inactive')
 
@@ -44,6 +57,18 @@ function toggleShoppingCart () {
     if (!isDesktopClosed) {
         desktopMenu.classList.add('inactive')
     }
+    if (!isProductDetailClosed) {
+        productDetail.classList.add('inactive')
+    }
+}
+
+function openAsideMenu () {
+    productDetail.classList.remove('inactive')
+
+}
+
+function closeProductDetail() {
+    productDetail.classList.add('inactive')
 }
 
 //Prueba de comprension de la clase
@@ -134,6 +159,7 @@ function renderizarImagenes (array) {
         const productImg = document.createElement('img');
         productImg.setAttribute('src', product.image)
         productImg.setAttribute('alt', 'imagen del producto')
+        productImg.addEventListener('click', openAsideMenu)
     
         productCard.appendChild(productImg)
     
